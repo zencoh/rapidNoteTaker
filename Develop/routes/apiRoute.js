@@ -4,10 +4,9 @@ let util = require( 'util' );
 let store = require( '../db/dbCreate.js' );
 
 // set paths (from store.js)
-let readFileAsync = util.promisify( fs.readFile );
-let writeFileAsync = util.promisify( fs.writeFile );
+// let readFileAsync = util.promisify( fs.readFile );
+// let writeFileAsync = util.promisify( fs.writeFile );
 
-// set exports
 module.exports = function(app) {
 
 // GET

@@ -7,15 +7,10 @@ const uuid = require( '../helpers/uuid' );
 const readFileAsync = util.promisify( fs.readFile );
 const writeFileAsync = util.promisify( fs.writeFile );
 
-// create "store" class object for parsing data into our desired locations(s) (read, write, get, add, delete)
-// main "store" object should contain all other objects
-// each local object should reference relevant data and include a return
 class store {
-    // create "read" object within "store" object
     read() {
         return readFileAsync( 'db/db.json', 'utf8' );
     }
-    // create "get" object within "store" object
     getNotes() {
         return this.read().then((data) => {
 
@@ -26,12 +21,9 @@ class store {
             } else return [...data];
         }).then(notes => notes);
     }
-
-    // create "write" object within "store" object
     write(note) {
         return writeFileAsync( 'db/db.json', JSON.stringify(note) );
     }
-    // create "add" object within "store" object
     addNote(newNote) {
         let { title, text } = newNote;
         const note = {
@@ -45,7 +37,6 @@ class store {
             return this.write( updateNotes );
         }).then( () => note);
     }
-    // create "delete" object within "store" object
     deleteNote(id) {
         return this.getNotes().then( ( allNotes ) =>         {
             let newNotes = [];
@@ -61,5 +52,4 @@ class store {
     };
 };
 
-// export module for "store"
 module.exports = new store();
