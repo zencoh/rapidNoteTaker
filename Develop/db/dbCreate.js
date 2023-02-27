@@ -7,7 +7,7 @@ const uuid = require( '../helpers/uuid' );
 const readFileAsync = util.promisify( fs.readFile );
 const writeFileAsync = util.promisify( fs.writeFile );
 
-class store {
+class dbCreate {
     read() {
         return readFileAsync( 'db/db.json', 'utf8' );
     }
@@ -52,4 +52,4 @@ class store {
     };
 };
 
-module.exports = new store();
+module.exports = new dbCreate();
