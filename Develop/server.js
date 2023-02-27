@@ -12,47 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/api', api);
 
-// app.use(express.static('public'));
+// require routes
+require( './routes/apiRoute' )(app);
+require( './routes/htmlRoute' )(app);
 
-// GET route for homepage
-app.get('/', (req, res) => {
-    res.json(path.join(__dirname, 'public/index.html'));
-    res.sendFile(path.join(__dirname, 'public.index.html'));
+// listen for port
+app.listen(PORT, function(){
+    console.log( "listening on PORT " + PORT )
 });
-
-// GET route for notes page
-app.get('/notes', (req, res) => 
-    res.sendFile(path.join(__dirname, 'public/notes.html'))
-);
-
-// wildcard route to direct users to homepage
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/index.html'))
-);
-
-// Get route for api notes
-app.get('/api/notes', function(req, res){
-    // res.json(path.join(__dirname, '/db/db.json'));    
-    res.sendFile(path.join(__dirname, 'db/db.json'));
-})
-
-app.get('/api/notes', function(req, res) {
-    res.json(path.join(__dirname, 'db/db.json'));
-});
-
-// Post route for api notes
-app.post('/api/notes', function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync('db/db.json', 'utf8'));
-    let newNote = req.body;
-    let id = (savedNotes.length).toString();
-    newNote.id = id;
-    savedNotes.push(newNote);
-    // Write to json file
-    fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
-    res.json(savedNotes);
-});
-
-// listener
-app.listen(PORT, () => {
-    console.log(`App listening on localhost:${PORT}`);
-  });
