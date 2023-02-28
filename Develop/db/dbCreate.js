@@ -39,7 +39,7 @@ class dbCreate {
             return this.write( updateNotes );
         }).then(() => note);
     }
-    // deletes selected note from db.json and therefor index.hmtml
+    // deletes selected note from db.json and therefor notes.html
     deleteNote(id) {
         return this.getNotes().then((allNotes) => {
             let newNotes = [];
