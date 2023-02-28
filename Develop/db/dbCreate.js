@@ -1,13 +1,14 @@
-// define require for fs and util
+// import packages
 const fs = require('fs');
 const util = require('util');
 
-// UUID
+// uuid
 const uuid = require('../helpers/uuid');
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
 class dbCreate {
+    // read method for db.json 
     read() {
         return readFileAsync('db/db.json', 'utf8');
     }
@@ -20,9 +21,11 @@ class dbCreate {
             } else return [...data];
         }).then(notes => notes);
     }
+    // writes to db.json with note information 
     write(note) {
         return writeFileAsync('db/db.json', JSON.stringify(note));
     }
+    // adding new notes to the db.json
     addNote(newNote) {
         let {title, text} = newNote;
         const note = {
@@ -36,6 +39,7 @@ class dbCreate {
             return this.write( updateNotes );
         }).then(() => note);
     }
+    // deletes selected note from db.json and therefor index.hmtml
     deleteNote(id) {
         return this.getNotes().then((allNotes) => {
             let newNotes = [];
