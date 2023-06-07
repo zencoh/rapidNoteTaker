@@ -21,4 +21,4 @@ Thank you for investing your time in reading through my code and README. Since I
 Try my application for yourself and add, delete, and view notes.
 
 ## Questions
-For any questions, please feel free to reach out to me on GitHub at [zencoh](https://github.com/zencoh). You can also reach me at chsoccer4@outlook.com.
+For any questions, please feel free to reach out to me on GitHub at [zencoh](https://github.com/zencoh). You can also reach me at chartkopp@outlook.com.
